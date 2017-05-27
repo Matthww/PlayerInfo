@@ -50,7 +50,7 @@ class PlayerInfo extends PluginBase implements Listener
                     if ($this->getServer()->getPlayer($args[0])) {
                         $target = $this->getServer()->getPlayer($args[0]);
                         $cdata = $this->PlayerData[$target->getName()];
-                        $sender->sendMessage("§a§l===§r§aPlayer Info§a§a§l===");
+                        $sender->sendMessage("§a§l===§r§aPlayer Info§a§l===");
                         $sender->sendMessage("§bName: §c" . $target->getDisplayName());
                         $sender->sendMessage("§bIP: §c" . $target->getAddress());
                         $sender->sendMessage("§bOS: §c" . $os[$cdata["DeviceOS"]]);
@@ -64,13 +64,13 @@ class PlayerInfo extends PluginBase implements Listener
                 } else {
                     if ($sender instanceof Player) {
                         $cdata = $this->PlayerData[$sender->getName()];
-                        $sender->sendMessage("§a§l===§r§aPlayer Info§a§a§l===");
+                        $sender->sendMessage("§a§l===§r§aPlayer Info§a§l===");
                         $sender->sendMessage("§bName: §c" . $sender->getName());
                         $sender->sendMessage("§bIP: §c" . $sender->getAddress());
                         $sender->sendMessage("§bOS: §c" . $os[$cdata["DeviceOS"]]);
                         $sender->sendMessage("§bModel: §c" . $cdata["DeviceModel"]);
                         $sender->sendMessage("§bUI: §c" . $UI[$cdata["UIProfile"]]);
-                        $sender->sendMessage("§a§l===============");
+                        $sender->sendMessage("§a§l==============");
                         return true;
                     } else {
                         $sender->sendMessage("§c[Error] Please specify a player");
