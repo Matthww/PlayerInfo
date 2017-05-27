@@ -18,11 +18,10 @@ class PlayerInfo extends PluginBase implements Listener
     protected $DeviceModel;
     protected $UIProfile;
     protected $PlayerData;
-    protected $target;
 
     public function onEnable()
     {
-        file_put_contents($this->getDataFolder() . ".started", "true");
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
         SpoonDetector::printSpoon($this, 'spoon.txt');
     }
 
@@ -46,38 +45,37 @@ class PlayerInfo extends PluginBase implements Listener
             $os = ["Unknown", "Android", "iOS", "OSX", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated"];
             $UI = ["Classic UI", "Pocket UI"];
 
-            if ($sender instanceof Player) {
-                if ($sender->hasPermission("playerinfo.command.use")) {
-                    if (!isset($args[0])) {
-                        $cdata = $this->PlayerData[$sender->getName()];
-                        $sender->sendMessage("§a§l===§r§aPlayer Info§a§l===");
-                        $sender->sendMessage("§bName: §c" . $sender->getDisplayName());
-                        $sender->sendMessage("§bIP: §c" . $sender->getAddress());
+            if ($sender->hasPermission("playerinfo.use")) {
+                if (isset($args[0])) {
+                    if ($this->getServer()->getPlayer($args[0])) {
+                        $target = $this->getServer()->getPlayer($args[0]);
+                        $cdata = $this->PlayerData[$target->getName()];
+                        $sender->sendMessage("§a§l===§r§aPlayer Info§a§a§l===");
+                        $sender->sendMessage("§bName: §c" . $target->getDisplayName());
+                        $sender->sendMessage("§bIP: §c" . $target->getAddress());
                         $sender->sendMessage("§bOS: §c" . $os[$cdata["DeviceOS"]]);
                         $sender->sendMessage("§bModel: §c" . $cdata["DeviceModel"]);
                         $sender->sendMessage("§bUI: §c" . $UI[$cdata["UIProfile"]]);
                         $sender->sendMessage("§a§l==============");
                         return true;
                     } else {
-                        if ($this->getServer()->getPlayer($args[0])) {
-                            $this->target = $this->getServer()->getPlayer($args[0]);
-                            $cdata = $this->PlayerData[$this->target->getName()];
-                            $sender->sendMessage("§a§l===§r§aPlayer Info§a§l===");
-                            $sender->sendMessage("§bName: §c" . $this->target->getDisplayName());
-                            $sender->sendMessage("§bIP: §c" . $this->target->getAddress());
-                            $sender->sendMessage("§bOS: §c" . $os[$cdata["DeviceOS"]]);
-                            $sender->sendMessage("§bModel: §c" . $cdata["DeviceModel"]);
-                            $sender->sendMessage("§bUI: §c" . $UI[$cdata["UIProfile"]]);
-                            $sender->sendMessage("§a§l==============");
-                            return true;
-                        } else {
-                            $sender->sendMessage("§c[Error] Player not found");
-                            return false;
-                        }
+                        $sender->sendMessage("§c[Error] Player not found");
+                    }
+                } else {
+                    if ($sender instanceof Player) {
+                        $cdata = $this->PlayerData[$sender->getName()];
+                        $sender->sendMessage("§a§l===§r§aPlayer Info§a§a§l===");
+                        $sender->sendMessage("§bName: §c" . $sender->getName());
+                        $sender->sendMessage("§bIP: §c" . $sender->getAddress());
+                        $sender->sendMessage("§bOS: §c" . $os[$cdata["DeviceOS"]]);
+                        $sender->sendMessage("§bModel: §c" . $cdata["DeviceModel"]);
+                        $sender->sendMessage("§bUI: §c" . $UI[$cdata["UIProfile"]]);
+                        $sender->sendMessage("§a§l===============");
+                        return true;
+                    } else {
+                        $sender->sendMessage("§c[Error] Please specify a player");
                     }
                 }
-            } else {
-                $sender->sendMessage("§cThis command can't be executed by the console.");
             }
         }
         return true;

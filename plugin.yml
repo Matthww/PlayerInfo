@@ -10,11 +10,11 @@ commands:
   description: Show info about a certain player!
   usage: "/playerinfo <player>"
   permission: playerinfo.command.use
- pinfo:
-  description: Show info about a certain player!
-  usage: "/pinfo <player>"
-  permission: playerinfo.command.use
+  aliases: ['pinfo']
 permissions:
- playerinfo.command.use:
-  description: "Allows the user to run the playerinfo command"
-  default: op
+  playerinfo:
+    default: false
+    children:
+      playerinfo.use:
+        default: op
+        description: "Allows the user to run the playerinfo command"
