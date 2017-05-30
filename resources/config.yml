@@ -1,0 +1,28 @@
+---
+# Configuration for PlayerInfo
+
+# Show player's name
+Name: true
+
+# Show player's IP
+IP: true
+
+# Show Device OS
+# (Android, iOS etc.)
+OS: true
+
+# Show Device Model
+# (iPhone 7 etc.)
+Model: true
+
+# Show player's UI settings
+# (Classic UI or Pocket UI)
+UI: true
+
+# Show player's GUI scale settings
+GUI: true
+
+# Show player's controls
+# (Touch, Mouse or Controller)
+Controls: true
+...
