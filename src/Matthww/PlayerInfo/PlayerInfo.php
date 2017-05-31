@@ -2,7 +2,7 @@
 
 namespace Matthww\PlayerInfo;
 
-use Matthww\PlayerInfo\Utils\SpoonDetector;
+use Matthww\PlayerInfo\utils\SpoonDetector;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\Listener;

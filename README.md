@@ -16,4 +16,6 @@ Name: Steve\
 IP: 127.0.0.1\
 OS: iOS\
 Model: iPhone\
-UI: Classic UI
+UI: Classic UI\
+GUI Scale: Maximum\
+Controls: Touch
