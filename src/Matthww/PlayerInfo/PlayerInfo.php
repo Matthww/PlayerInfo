@@ -34,8 +34,6 @@ class PlayerInfo extends PluginBase implements Listener {
         if ($receiveEvent->getPacket() instanceof LoginPacket) {
             $pk = $receiveEvent->getPacket();
             $this->PlayerData[$pk->username] = $pk->clientData;
-
-            safe_var_dump($receiveEvent->getPacket()->clientData);
         }
     }
 
