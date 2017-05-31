@@ -1,5 +1,6 @@
 <?php
-namespace spoondetector;
+
+namespace Matthww\PlayerInfo\utils;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
