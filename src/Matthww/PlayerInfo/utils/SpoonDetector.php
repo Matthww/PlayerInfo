@@ -7,7 +7,7 @@ use pocketmine\Server;
 /**
  * This class is deliberately meant to be silly
  * Class SpoonDetector
- * @package Matthww\PlayerInfo\utils
+ * @package Matthww\PlayerInfo\utils\SpoonDetector
  */
 class SpoonDetector {
 
