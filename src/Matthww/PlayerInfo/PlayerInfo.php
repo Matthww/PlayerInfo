@@ -37,7 +37,7 @@ class PlayerInfo extends PluginBase implements Listener {
         }
     }
 
-    public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{ 
         if (strtolower($command->getName()) == "playerinfo" or strtolower($command->getName()) == "pinfo") {
 
             $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated"];
