@@ -1,7 +1,7 @@
 name: PlayerInfo
 version: 1.2.3
 author: Matthww
-api: [3.0.0-ALPHA1, 3.0.0-ALPHA2, 3.0.0-ALPHA3, 3.0.0-ALPHA4, 3.0.0-ALPHA5, 3.0.0-ALPHA6]
+api: [3.0.0-ALPHA7]
 description: Shows info about a certain player!
 main: Matthww\PlayerInfo\PlayerInfo
 
