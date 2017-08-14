@@ -28,7 +28,7 @@ class SpoonDetector {
     
     In order to begin using this plugin you must understand that you will be offered no support. 
     
-    Furthermore, the GitHub issue tracker for this project is targeted at vanilla PocketMine only. Any bugs you create which don't affect vanilla PocketMine, will be deleted.
+    Furthermore, the GitHub issue tracker for this project is targeted at vanilla PocketMine only. Any bugs you create which don't affect vanilla PocketMine will be deleted.
     
     Have you read and understood the above (type 'yes' after the question mark)?";
 
