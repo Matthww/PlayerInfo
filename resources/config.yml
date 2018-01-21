@@ -9,6 +9,9 @@ Name: true
 # Show players IP
 IP: true
 
+# Show players ping
+Ping: true
+
 # Show players Device OS
 # (Android, iOS etc.)
 OS: true
