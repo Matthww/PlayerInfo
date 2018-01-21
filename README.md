@@ -14,8 +14,11 @@ We also have a shorter command:\
 
 Name: Steve\
 IP: 127.0.0.1\
+Ping: 46\
 OS: iOS\
 Model: iPhone\
 UI: Classic UI\
 GUI Scale: Maximum\
-Controls: Touch
+Controls: Touch\
+Health: 19HP\
+Position: X: 132, Y: 78, Z: -963
