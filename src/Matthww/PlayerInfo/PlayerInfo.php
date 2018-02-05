@@ -23,19 +23,41 @@ class PlayerInfo extends PluginBase implements Listener {
 
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->saveDefaultConfig();
+
+        if(!is_dir($this->getDataFolder())) {
+            mkdir($this->getDataFolder());
+        }
+        if(!file_exists($this->getDataFolder() . "config.yml")) {
+            $this->saveDefaultConfig();
+        }
+
+        if(!file_exists($this->getDataFolder() . "models.yml")) {
+            $this->saveResource("models.yml", false);
+        }
+
         SpoonDetector::printSpoon($this, 'spoon.txt');
         $this->getLogger()->notice("is enabled");
+
     }
 
     public function onDisable() {
         $this->getLogger()->notice("is disabled!");
     }
-
+    
     public function onPacketReceived(DataPacketReceiveEvent $receiveEvent) {
         $pk = $receiveEvent->getPacket();
         if($pk instanceof LoginPacket) {
             $this->PlayerData[$pk->username] = $pk->clientData;
+        }
+    }
+
+    public function DeviceModel(string $model) {
+        $models = yaml_parse_file($this->getDataFolder() . "models.yml");
+
+        if(isset($models[$model])) {
+            return $models[$model];
+        } else {
+            return $model;
         }
     }
 
@@ -82,7 +104,7 @@ class PlayerInfo extends PluginBase implements Listener {
                     $sender->sendMessage(TF::AQUA . "OS: " . TF::RED . $os[$cdata["DeviceOS"]]);
                 }
                 if($this->getConfig()->get("Model") == true) {
-                    $sender->sendMessage(TF::AQUA . "Model: " . TF::RED . $cdata["DeviceModel"]);
+                    $sender->sendMessage(TF::AQUA . "Model: " . TF::RED . $this->DeviceModel($cdata["DeviceModel"]));
                 }
                 if($this->getConfig()->get("UI") == true) {
                     $sender->sendMessage(TF::AQUA . "UI: " . TF::RED . $UI[$cdata["UIProfile"]]);
