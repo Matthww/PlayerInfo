@@ -1,5 +1,5 @@
 name: PlayerInfo
-version: 1.3.2
+version: 1.3.3
 author: Matthww
 api: [3.0.0-ALPHA10, 3.0.0-ALPHA11]
 description: Shows info about a certain player!
