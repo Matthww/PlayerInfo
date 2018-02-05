@@ -76,7 +76,7 @@ class PlayerInfo extends PluginBase implements Listener {
                     $sender->sendMessage(TF::AQUA . "IP: " . TF::RED . $target->getAddress());
                 }
                 if($this->getConfig()->get("Ping") == true) {
-                    $sender->sendMessage(TF::AQUA . "Ping: " . TF::RED . $target->getPing());
+                    $sender->sendMessage(TF::AQUA . "Ping: " . TF::RED . $target->getPing() . "ms");
                 }
                 if($this->getConfig()->get("OS") == true) {
                     $sender->sendMessage(TF::AQUA . "OS: " . TF::RED . $os[$cdata["DeviceOS"]]);
