@@ -1,0 +1,75 @@
+#Device models
+
+iPhone4,1: iPhone 4s
+iPhone5,1: iPhone 5
+iPhone5,2: iPhone 5
+iPhone5,3: iPhone 5c
+iPhone5,4: iPhone 5c
+iPhone6,1: iPhone 5s
+iPhone6,2: iPhone 5s
+iPhone7,2: iPhone 6
+iPhone7,1: iPhone 6 Plus
+iPhone8,1: iPhone 6s
+iPhone8,2: iPhone 6s Plus
+iPhone8,4: iPhone SE
+iPhone9,1: iPhone 7
+iPhone9,3: iPhone 7
+iPhone9,2: iPhone 7 Plus
+iPhone9,4: iPhone 7 Plus
+iPhone10,1: iPhone 8
+iPhone10,4: iPhone 8
+iPhone10,2: iPhone 8 Plus
+iPhone10,5: iPhone 8 Plus
+iPhone10,3: iPhone X
+iPhone10,6: iPhone X
+
+
+SAMSUNG SM-A530x: Samsung Galaxy A8 (2018)
+SAMSUNG SM-A730x: Samsung Galaxy A8+ (2018)
+SAMSUNG SM-A810x: Samsung Galaxy A8 (2016)
+
+SAMSUNG SM-A7100: Samsung Galaxy A7 (2016)
+SAMSUNG SM-A710F: Samsung Galaxy A7 (2016)
+SAMSUNG SM-A710FD: Samsung Galaxy A7 (2016)
+SAMSUNG SM-A710M: Samsung Galaxy A7 (2016)
+SAMSUNG SM-A710Y: Samsung Galaxy A7 (2016)
+
+SAMSUNG SM-A5100: Samsung Galaxy A5 (2016)
+SAMSUNG SM-A510F: Samsung Galaxy A5 (2016)
+SAMSUNG SM-A510FD: Samsung Galaxy A5 (2016)
+SAMSUNG SM-A510M: Samsung Galaxy A5 (2016)
+SAMSUNG SM-A510Y: Samsung Galaxy A5 (2016)
+
+SAMSUNG SM-A310F: Samsung Galaxy A3 (2016)
+SAMSUNG SM-A310M: Samsung Galaxy A3 (2016)
+
+SAMSUNG SM-G930F: Samsung Galaxy S7
+SAMSUNG SM-G930FD: Samsung Galaxy S7
+SAMSUNG SM-G9300: Samsung Galaxy S7
+SAMSUNG SM-G930A: Samsung Galaxy S7
+SAMSUNG SM-G930V: Samsung Galaxy S7
+SAMSUNG SM-G930AZ: Samsung Galaxy S7
+SAMSUNG SM-G930S: Samsung Galaxy S7
+SAMSUNG SM-G930K: Samsung Galaxy S7
+SAMSUNG SM-G930W8: Samsung Galaxy S7
+
+SAMSUNG SM-G935F: Samsung Galaxy S7 Edge
+SAMSUNG SM-G935FD: Samsung Galaxy S7 Edge
+SAMSUNG SM-G9350: Samsung Galaxy S7 Edge
+SAMSUNG SM-G935A: Samsung Galaxy S7 Edge
+SAMSUNG SM-G935V: Samsung Galaxy S7 Edge
+SAMSUNG SM-G935U: Samsung Galaxy S7 Edge
+SAMSUNG SM-G935S: Samsung Galaxy S7 Edge
+SAMSUNG SM-G935K: Samsung Galaxy S7 Edge
+SAMSUNG SM-G935W8: Samsung Galaxy S7 Edge
+SAMSUNG SC-02H: Samsung Galaxy S7 Edge
+
+SAMSUNG SM-N950x: Samsung Galaxy Note 8
+SAMSUNG SM-G950x: Samsung Galaxy S8
+SAMSUNG SM-G955x: Samsung Galaxy S8+
+
+
+
+LGE LG-V495: LG V495
+
+AMAZON KFDOWI: Amazon Fire HD 8 Tablet
