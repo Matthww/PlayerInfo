@@ -3,6 +3,9 @@
 # True = enabled
 # False = disabled
 
+#Save playerdata
+Save: true
+
 # Show players name
 Name: true
 
