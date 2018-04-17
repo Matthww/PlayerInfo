@@ -55,23 +55,25 @@ class PlayerInfo extends PluginBase implements Listener {
     }
 
     public function onJoin(PlayerJoinEvent $joinEvent) {
-        $player = $joinEvent->getPlayer();
-        $cdata = $this->PlayerData[$player->getName()];
-        $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "NX"];
-        $UI = ["Classic UI", "Pocket UI"];
-        $Controls = ["Unknown", "Mouse", "Touch", "Controller"];
-        $GUI = [-2 => "Minimum", -1 => "Medium", 0 => "Maximum"];
+        if($this->getConfig()->get("Save") == true) {
+            $player = $joinEvent->getPlayer();
+            $cdata = $this->PlayerData[$player->getName()];
+            $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "NX"];
+            $UI = ["Classic UI", "Pocket UI"];
+            $Controls = ["Unknown", "Mouse", "Touch", "Controller"];
+            $GUI = [-2 => "Minimum", -1 => "Medium", 0 => "Maximum"];
 
-        $this->getServer()->getScheduler()->scheduleTask(new Tasks\SaveTask(
-            $this,
-            $player->getName(),
-            $this->DeviceModel($cdata["DeviceModel"]),
-            $os[$cdata["DeviceOS"]],
-            $player->getAddress(),
-            $UI[$cdata["UIProfile"]],
-            $GUI[$cdata["GuiScale"]],
-            $Controls[$cdata["CurrentInputMode"]]
-        ));
+            $this->getServer()->getScheduler()->scheduleTask(new Tasks\SaveTask(
+                $this,
+                $player->getName(),
+                $this->DeviceModel($cdata["DeviceModel"]),
+                $os[$cdata["DeviceOS"]],
+                $player->getAddress(),
+                $UI[$cdata["UIProfile"]],
+                $GUI[$cdata["GuiScale"]],
+                $Controls[$cdata["CurrentInputMode"]]
+            ));
+        }
     }
 
     public function DeviceModel(string $model) {
@@ -107,7 +109,7 @@ class PlayerInfo extends PluginBase implements Listener {
                         if($target = $this->getServer()->getPlayer($args[0])) {
                             //Nothing
                         } else {
-                            if($this->getConfig()->get("IP") == true) {
+                            if($this->getConfig()->get("Save") == true) {
                                 $this->getServer()->getScheduler()->scheduleTask(new Tasks\LoadTask($this, $sender, $args[0]));
                                 return true;
                             } else {
