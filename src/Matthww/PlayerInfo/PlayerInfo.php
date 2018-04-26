@@ -36,14 +36,9 @@ class PlayerInfo extends PluginBase implements Listener {
         }
         if(!file_exists($this->getDataFolder() . "models.yml")) {
             $this->saveResource("models.yml", false);
-        }
+		}
 
         SpoonDetector::printSpoon($this, 'spoon.txt');
-        $this->getLogger()->notice("is enabled");
-    }
-
-    public function onDisable() {
-        $this->getLogger()->notice("is disabled!");
     }
 
     public function onPacketReceived(DataPacketReceiveEvent $receiveEvent) {
