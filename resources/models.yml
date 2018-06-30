@@ -65,6 +65,8 @@ iPad7,2: iPad Pro 2 (12.9-inch)
 iPad7,3: iPad Pro (10.5-inch)
 iPad7,4: iPad Pro (10.5-inch)
 
+SAMSUNG SM-J327T1: Samsung Galaxy J3 Prime Black
+
 SAMSUNG SM-A530x: Samsung Galaxy A8 (2018)
 SAMSUNG SM-A730x: Samsung Galaxy A8+ (2018)
 SAMSUNG SM-A810x: Samsung Galaxy A8 (2016)
@@ -84,6 +86,12 @@ SAMSUNG SM-A510Y: Samsung Galaxy A5 (2016)
 SAMSUNG SM-A310F: Samsung Galaxy A3 (2016)
 SAMSUNG SM-A310M: Samsung Galaxy A3 (2016)
 
+SAMSUNG-SM-G900A: Samsung Galaxy S5
+SAMSUNG SAMSUNG-SM-G900A: Samsung Galaxy S5
+
+SAMSUNG SM-G920F: Samsung Galaxy S6
+
+SAMSUNG SM-G930T: Samsung Galaxy S7
 SAMSUNG SM-G930F: Samsung Galaxy S7
 SAMSUNG SM-G930FD: Samsung Galaxy S7
 SAMSUNG SM-G9300: Samsung Galaxy S7
@@ -107,10 +115,27 @@ SAMSUNG SC-02H: Samsung Galaxy S7 Edge
 
 SAMSUNG SM-N950x: Samsung Galaxy Note 8
 SAMSUNG SM-G950x: Samsung Galaxy S8
+SAMSUNG SM-G950U: Samsung Galaxy S8
 SAMSUNG SM-G955x: Samsung Galaxy S8+
 
+SAMSUNG SM-G960U: Samsung Galaxy S9
 
+SAMSUNG SM-T280: Samsung Galaxy Tab A 7.0 (2016)
+SAMSUNG SM-T350: Samsung Galaxy Tab A 8.0
+SAMSUNG SM-T580: Samsung Galaxy Tab A 10.1 (2016)
+SAMSUNG SM-T820: Samsung Galaxy Tab S3
 
+TCL 5065D: Alcatel One Touch Pop 3
+
+LGE LG-K373: LG Escape 3
 LGE LG-V495: LG V495
+LGE LGMP450: LG Stylo 3 Plus
 
-AMAZON KFDOWI: Amazon Fire HD 8 Tablet
+SONY E2303: Sony Xperia M4 Aqua
+
+MOTOROLA MotoE2(4G-LTE): Motorola Moto E
+
+AMAZON KFARWI: Amazon Kindle Fire HD 6
+AMAZON KFAUWI: Amazon Kindle Fire HD 7
+AMAZON KFFOWI: Amazon Kindle Fire HD 7
+AMAZON KFDOWI: Amazon Kindle Fire HD 8

@@ -1,10 +1,10 @@
 <?php
 namespace Matthww\PlayerInfo\Tasks;
 
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\utils\Config;
 
-class SaveTask extends PluginTask {
+class SaveTask extends Task {
 
     public $plugin;
 
@@ -25,7 +25,6 @@ class SaveTask extends PluginTask {
         $this->UI = $UI;
         $this->GUI = $GUI;
         $this->controls = $controls;
-        parent::__construct($plugin);
     }
 
     public function getPlugin() {

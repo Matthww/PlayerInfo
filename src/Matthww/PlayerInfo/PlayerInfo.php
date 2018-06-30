@@ -2,7 +2,6 @@
 
 namespace Matthww\PlayerInfo;
 
-use Matthww\PlayerInfo\utils\SpoonDetector;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\ConsoleCommandSender;
@@ -36,9 +35,7 @@ class PlayerInfo extends PluginBase implements Listener {
         }
         if(!file_exists($this->getDataFolder() . "models.yml")) {
             $this->saveResource("models.yml", false);
-		}
-
-        SpoonDetector::printSpoon($this, 'spoon.txt');
+        }
     }
 
     public function onPacketReceived(DataPacketReceiveEvent $receiveEvent) {
@@ -58,7 +55,7 @@ class PlayerInfo extends PluginBase implements Listener {
             $Controls = ["Unknown", "Mouse", "Touch", "Controller"];
             $GUI = [-2 => "Minimum", -1 => "Medium", 0 => "Maximum"];
 
-            $this->getServer()->getScheduler()->scheduleTask(new Tasks\SaveTask(
+            $this->getScheduler()->scheduleTask(new Tasks\SaveTask(
                 $this,
                 $player->getName(),
                 $this->DeviceModel($cdata["DeviceModel"]),
@@ -105,7 +102,7 @@ class PlayerInfo extends PluginBase implements Listener {
                             //Nothing
                         } else {
                             if($this->getConfig()->get("Save") == true) {
-                                $this->getServer()->getScheduler()->scheduleTask(new Tasks\LoadTask($this, $sender, $args[0]));
+                                $this->getScheduler()->scheduleTask(new Tasks\LoadTask($this, $sender, $args[0]));
                                 return true;
                             } else {
                                 $sender->sendMessage(TF::RED . "[PlayerInfo] Player is not online");

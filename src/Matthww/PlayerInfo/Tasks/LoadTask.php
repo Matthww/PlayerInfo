@@ -2,11 +2,11 @@
 namespace Matthww\PlayerInfo\Tasks;
 
 use pocketmine\command\CommandSender;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as TF;
 
-class LoadTask extends PluginTask {
+class LoadTask extends Task {
 
     public $plugin;
 
@@ -17,7 +17,6 @@ class LoadTask extends PluginTask {
         $this->plugin = $plugin;
         $this->sender = $sender;
         $this->target = $target;
-        parent::__construct($plugin);
     }
 
     public function getPlugin() {
