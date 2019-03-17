@@ -14,7 +14,7 @@ We also have a shorter command:\
 
 Name: Steve\
 IP: 127.0.0.1\
-Ping: 46\
+Ping: 46ms\
 OS: iOS\
 Model: iPhone\
 UI: Classic UI\

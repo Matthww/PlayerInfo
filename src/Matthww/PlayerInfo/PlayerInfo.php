@@ -2,6 +2,9 @@
 
 namespace Matthww\PlayerInfo;
 
+use Matthww\PlayerInfo\Tasks\FetchModelsTask;
+use Matthww\PlayerInfo\Tasks\LoadTask;
+use Matthww\PlayerInfo\Tasks\SaveTask;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\ConsoleCommandSender;
@@ -34,13 +37,17 @@ class PlayerInfo extends PluginBase implements Listener {
             $this->saveDefaultConfig();
         }
         if(!file_exists($this->getDataFolder() . "models.yml")) {
-            $this->saveResource("models.yml", false);
+            $this->getLogger()->notice("downloading new models file...");
+            $this->getServer()->getAsyncPool()->submitTask(new FetchModelsTask($this->getDataFolder()));
+            //$this->saveResource("models.yml", false);
+        } else {
+            $this->getServer()->getAsyncPool()->submitTask(new FetchModelsTask($this->getDataFolder()));
+            $this->getLogger()->notice("updating models file...");
         }
     }
 
     public function onPacketReceived(DataPacketReceiveEvent $receiveEvent) {
         $pk = $receiveEvent->getPacket();
-
         if($pk instanceof LoginPacket) {
             $this->PlayerData[$pk->username] = $pk->clientData;
         }
@@ -55,7 +62,7 @@ class PlayerInfo extends PluginBase implements Listener {
             $Controls = ["Unknown", "Mouse", "Touch", "Controller"];
             $GUI = [-2 => "Minimum", -1 => "Medium", 0 => "Maximum"];
 
-            $this->getScheduler()->scheduleTask(new Tasks\SaveTask(
+            $this->getScheduler()->scheduleTask(new SaveTask(
                 $this,
                 $player->getName(),
                 $this->DeviceModel($cdata["DeviceModel"]),
@@ -73,9 +80,8 @@ class PlayerInfo extends PluginBase implements Listener {
 
         if(isset($models[$model])) {
             return $models[$model];
-        } else {
-            return $model;
         }
+        return $model;
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
@@ -86,34 +92,24 @@ class PlayerInfo extends PluginBase implements Listener {
             $Controls = ["Unknown", "Mouse", "Touch", "Controller"];
             $GUI = [-2 => "Minimum", -1 => "Medium", 0 => "Maximum"];
 
-            if($sender->hasPermission("playerinfo.use")) {
-                if($sender instanceof ConsoleCommandSender) {
-                    if(isset($args[0])) {
-                        $target = $this->getServer()->getPlayer($args[0]);
-                    } else {
-                        $sender->sendMessage(TF::RED . "[PlayerInfo] Please specify a player");
-                        return false;
-                    }
-                } else {
-                    if($sender instanceof Player and !isset($args[0])) {
-                        $target = $sender->getPlayer();
-                    } else {
-                        if($target = $this->getServer()->getPlayer($args[0])) {
-                            //Nothing
-                        } else {
-                            if($this->getConfig()->get("Save") == true) {
-                                $this->getScheduler()->scheduleTask(new Tasks\LoadTask($this, $sender, $args[0]));
-                                return true;
-                            } else {
-                                $sender->sendMessage(TF::RED . "[PlayerInfo] Player is not online");
-                                return false;
-                            }
-                        }
-                    }
-                }
-            } else {
+            if(!$sender->hasPermission("playerinfo.use")) {
                 $sender->sendMessage(TF::RED . "[PlayerInfo] No permission");
                 return false;
+            }
+            if(!isset($args[0])) {
+                $sender->sendMessage(TF::RED . "[PlayerInfo] Please specify a player");
+                return false;
+            }
+            $target = $this->getServer()->getPlayer($args[0]);
+
+            if(!$target instanceof Player) {
+                if($this->getConfig()->get("Save") == true) {
+                    $this->getScheduler()->scheduleTask(new LoadTask($this, $sender, $args[0]));
+                    return true;
+                } else {
+                    $sender->sendMessage(TF::RED . "[PlayerInfo] Player is not online");
+                    return false;
+                }
             }
             if($target instanceof Player) {
                 $cdata = $this->PlayerData[$target->getName()];
@@ -149,10 +145,6 @@ class PlayerInfo extends PluginBase implements Listener {
                     $sender->sendMessage(TF::AQUA . "Position: " . TF::RED . "X: " . $target->getFloorX() . ", Y: " . $target->getFloorY() . ", Z: " . $target->getFloorZ());
                 }
                 $sender->sendMessage(TF::GREEN . TF::BOLD . "================");
-                return true;
-            } else {
-                $sender->sendMessage(TF::RED . "[PlayerInfo] Player is not online");
-                return false;
             }
         }
         return true;
