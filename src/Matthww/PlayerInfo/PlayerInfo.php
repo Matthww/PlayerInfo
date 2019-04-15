@@ -7,7 +7,6 @@ use Matthww\PlayerInfo\Tasks\LoadTask;
 use Matthww\PlayerInfo\Tasks\SaveTask;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
@@ -36,14 +35,8 @@ class PlayerInfo extends PluginBase implements Listener {
         if(!file_exists($this->getDataFolder() . "config.yml")) {
             $this->saveDefaultConfig();
         }
-        if(!file_exists($this->getDataFolder() . "models.yml")) {
-            $this->getLogger()->notice("downloading new models file...");
-            $this->getServer()->getAsyncPool()->submitTask(new FetchModelsTask($this->getDataFolder()));
-            //$this->saveResource("models.yml", false);
-        } else {
-            $this->getServer()->getAsyncPool()->submitTask(new FetchModelsTask($this->getDataFolder()));
-            $this->getLogger()->notice("updating models file...");
-        }
+        $this->getServer()->getAsyncPool()->submitTask(new FetchModelsTask($this->getDataFolder(), $this->getDescription()->getVersion()));
+        $this->getLogger()->notice("updating models file...");
     }
 
     public function onPacketReceived(DataPacketReceiveEvent $receiveEvent) {
@@ -65,7 +58,7 @@ class PlayerInfo extends PluginBase implements Listener {
             $this->getScheduler()->scheduleTask(new SaveTask(
                 $this,
                 $player->getName(),
-                $this->DeviceModel($cdata["DeviceModel"]),
+                $this->getModel($cdata["DeviceModel"]),
                 $os[$cdata["DeviceOS"]],
                 $player->getAddress(),
                 $UI[$cdata["UIProfile"]],
@@ -75,7 +68,7 @@ class PlayerInfo extends PluginBase implements Listener {
         }
     }
 
-    public function DeviceModel(string $model) {
+    public function getModel(string $model) {
         $models = yaml_parse_file($this->getDataFolder() . "models.yml");
 
         if(isset($models[$model])) {
@@ -127,7 +120,7 @@ class PlayerInfo extends PluginBase implements Listener {
                     $sender->sendMessage(TF::AQUA . "OS: " . TF::RED . $os[$cdata["DeviceOS"]]);
                 }
                 if($this->getConfig()->get("Model") == true) {
-                    $sender->sendMessage(TF::AQUA . "Model: " . TF::RED . $this->DeviceModel($cdata["DeviceModel"]));
+                    $sender->sendMessage(TF::AQUA . "Model: " . TF::RED . $this->getModel($cdata["DeviceModel"]));
                 }
                 if($this->getConfig()->get("UI") == true) {
                     $sender->sendMessage(TF::AQUA . "UI: " . TF::RED . $UI[$cdata["UIProfile"]]);
