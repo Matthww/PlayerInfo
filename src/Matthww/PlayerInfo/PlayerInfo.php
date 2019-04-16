@@ -36,7 +36,6 @@ class PlayerInfo extends PluginBase implements Listener {
             $this->saveDefaultConfig();
         }
         $this->getServer()->getAsyncPool()->submitTask(new FetchModelsTask($this->getDataFolder(), $this->getDescription()->getVersion()));
-        $this->getLogger()->notice("updating models file...");
     }
 
     public function onPacketReceived(DataPacketReceiveEvent $receiveEvent) {
