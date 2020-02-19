@@ -48,6 +48,9 @@ class PlayerInfo extends PluginBase implements Listener {
     public function onJoin(PlayerJoinEvent $joinEvent) {
         if($this->getConfig()->get("Save") == true) {
             $player = $joinEvent->getPlayer();
+            if (!in_array($player->getName(), $this->PlayerData)) {
+                return false;
+            }
             $cdata = $this->PlayerData[$player->getName()];
             $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "NX"];
             $UI = ["Classic UI", "Pocket UI"];
