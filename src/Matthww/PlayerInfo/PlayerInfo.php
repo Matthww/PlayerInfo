@@ -52,7 +52,7 @@ class PlayerInfo extends PluginBase implements Listener {
                 return false;
             }
             $cdata = $this->PlayerData[$player->getName()];
-            $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "NX"];
+            $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "Playstation 4", "Nintento Switch", "Xbox One"];
             $UI = ["Classic UI", "Pocket UI"];
             $Controls = ["Unknown", "Mouse", "Touch", "Controller"];
             $GUI = [-2 => "Minimum", -1 => "Medium", 0 => "Maximum"];
