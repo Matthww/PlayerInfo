@@ -15,6 +15,8 @@ We also have a shorter command:\
 Name: Steve\
 IP: 127.0.0.1\
 Ping: 46ms\
+XUID: 2234576542385075\
+UUID: 598712b1-ff45-32e7-9422-35aad418989e\
 OS: iOS\
 Model: iPhone\
 UI: Classic UI\
