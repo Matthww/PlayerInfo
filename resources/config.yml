@@ -1,0 +1,42 @@
+---
+# Configuration for PlayerInfo
+# True = enabled
+# False = disabled
+
+#Save playerdata
+Save: true
+
+# Show players name
+Name: true
+
+# Show players IP
+IP: true
+
+# Show players ping
+Ping: true
+
+# Show players Device OS
+# (Android, iOS etc.)
+OS: true
+
+# Show players Device Model
+# (iPhone 7 etc.)
+Model: true
+
+# Show players UI settings
+# (Classic UI or Pocket UI)
+UI: true
+
+# Show players GUI scale settings
+GUI: true
+
+# Show players controls
+# (Touch, Mouse or Controller)
+Controls: true
+
+# Show players health
+Health: true
+
+# Show players position
+Position: true
+...
