@@ -51,13 +51,13 @@ class PlayerInfo extends PluginBase implements Listener {
         if($this->getConfig()->get("Save") == true) {
             $player = $joinEvent->getPlayer();
             if(!is_dir($this->getDataFolder() . "players/".$player->getName())) {
-                $this->getLogger()->info(TF::YELLOW."[PLAYERINFODB] > Użytkownik nie istnieje w bazie danych... dodaje.");
+                $this->getLogger()->info(TF::YELLOW."[PLAYERINFODB] > User not found in db... adding.");
                 mkdir($this->getDataFolder() . "players/".$player->getName());
             }
-            $this->getLogger()->info(TF::GREEN.'[PLAYERINFO] > Dodaje sesje użytkownika '.$player->getName()." do historii");
+            $this->getLogger()->info(TF::GREEN.'[PLAYERINFO] > Adding user session '.$player->getName()." to history");
             date_default_timezone_set("Europe/Warsaw");
-            $date = date('m-d-Y h:i:s a', time());
-            // $this->getLogger()->info(TF::GREEN.$date);
+            $date = date('m-d-Y_h-i-s_a', time());  // save date and time (Hours need to being separated with "-" too for windows system because it is crazy....)
+           
            
          
             $cdata = $this->PlayerData[$player->getName()];
