@@ -14,6 +14,7 @@ use pocketmine\network\mcpe\protocol\LoginPacket;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
+use function yaml_parse_file;
 
 class PlayerInfo extends PluginBase implements Listener {
 
@@ -23,7 +24,8 @@ class PlayerInfo extends PluginBase implements Listener {
     protected $PlayerData;
     protected $config;
 
-    public function onEnable() {
+    public function onEnable()
+    {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         if(!is_dir($this->getDataFolder())) {
@@ -38,14 +40,16 @@ class PlayerInfo extends PluginBase implements Listener {
         $this->getServer()->getAsyncPool()->submitTask(new FetchModelsTask($this->getDataFolder(), $this->getDescription()->getVersion()));
     }
 
-    public function onPacketReceived(DataPacketReceiveEvent $receiveEvent) {
+    public function onPacketReceived(DataPacketReceiveEvent $receiveEvent) 
+    {
         $pk = $receiveEvent->getPacket();
         if($pk instanceof LoginPacket) {
             $this->PlayerData[$pk->username] = $pk->clientData;
         }
     }
 
-    public function onJoin(PlayerJoinEvent $joinEvent) {
+    public function onJoin(PlayerJoinEvent $joinEvent)
+    {
         if($this->getConfig()->get("Save") == true) {
             $player = $joinEvent->getPlayer();
             if (!in_array($player->getName(), $this->PlayerData)) {
@@ -70,7 +74,8 @@ class PlayerInfo extends PluginBase implements Listener {
         }
     }
 
-    public function getModel(string $model) {
+    public function getModel(string $model) 
+    {
         $models = yaml_parse_file($this->getDataFolder() . "models.yml");
 
         if(isset($models[$model])) {
@@ -79,7 +84,8 @@ class PlayerInfo extends PluginBase implements Listener {
         return $model;
     }
 
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool 
+    {
         if(strtolower($command->getName()) == "playerinfo" or strtolower($command->getName()) == "pinfo") {
 
             $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "NX"];
