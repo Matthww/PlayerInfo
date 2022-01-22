@@ -4,7 +4,8 @@ namespace Matthww\PlayerInfo\Tasks;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\utils\Internet;
 
-class FetchModelsTask extends AsyncTask {
+class FetchModelsTask extends AsyncTask
+{
 
     private $path;
     private $version;
@@ -14,7 +15,8 @@ class FetchModelsTask extends AsyncTask {
         $this->version = $version;
     }
 
-    public function onRun() {
+    public function onRun(): int
+    {
         print($this->version);
         $result = Internet::getURL("https://playerinfo.hillcraft.net/models.yml?v=" . $this->version);
         if(!is_string($result)) {
