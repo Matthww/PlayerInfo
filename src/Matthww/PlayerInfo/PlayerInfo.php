@@ -100,7 +100,7 @@ class PlayerInfo extends PluginBase implements Listener {
                 $sender->sendMessage(TF::RED . "[PlayerInfo] Please specify a player");
                 return false;
             }
-            $target = $this->getServer()->getPlayer($args[0]);
+            $target = $this->getServer()->getOnlinePlayer($args[0]);
 
             if(!$target instanceof Player)
             {
