@@ -11,7 +11,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\mcpe\protocol\LoginPacket;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 
@@ -23,7 +23,8 @@ class PlayerInfo extends PluginBase implements Listener {
     protected $PlayerData;
     protected $config;
 
-    public function onEnable() {
+    public function onEnable(): void
+    {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         if(!is_dir($this->getDataFolder())) {
@@ -62,7 +63,7 @@ class PlayerInfo extends PluginBase implements Listener {
                 $player->getName(),
                 $this->getModel($cdata["DeviceModel"]),
                 $os[$cdata["DeviceOS"]],
-                $player->getAddress(),
+                $player->getNetworkSession()->getIp(),
                 $UI[$cdata["UIProfile"]],
                 $GUI[$cdata["GuiScale"]],
                 $Controls[$cdata["CurrentInputMode"]]
@@ -79,26 +80,32 @@ class PlayerInfo extends PluginBase implements Listener {
         return $model;
     }
 
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
-        if(strtolower($command->getName()) == "playerinfo" or strtolower($command->getName()) == "pinfo") {
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
+    {
+        if(strtolower($command->getName()) == "playerinfo" or strtolower($command->getName()) == "pinfo") 
+        {
 
             $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "NX"];
             $UI = ["Classic UI", "Pocket UI"];
             $Controls = ["Unknown", "Mouse", "Touch", "Controller"];
             $GUI = [-2 => "Minimum", -1 => "Medium", 0 => "Maximum"];
 
-            if(!$sender->hasPermission("playerinfo.use")) {
+            if(!$sender->hasPermission("playerinfo.use")) 
+            {
                 $sender->sendMessage(TF::RED . "[PlayerInfo] No permission");
                 return false;
             }
-            if(!isset($args[0])) {
+            if(!isset($args[0])) 
+            {
                 $sender->sendMessage(TF::RED . "[PlayerInfo] Please specify a player");
                 return false;
             }
             $target = $this->getServer()->getPlayer($args[0]);
 
-            if(!$target instanceof Player) {
-                if($this->getConfig()->get("Save") == true) {
+            if(!$target instanceof Player)
+            {
+                if($this->getConfig()->get("Save") == true) 
+                {
                     $this->getScheduler()->scheduleTask(new LoadTask($this, $sender, $args[0]));
                     return true;
                 } else {
@@ -113,10 +120,10 @@ class PlayerInfo extends PluginBase implements Listener {
                     $sender->sendMessage(TF::AQUA . "Name: " . TF::RED . $target->getDisplayName());
                 }
                 if($this->getConfig()->get("IP") == true) {
-                    $sender->sendMessage(TF::AQUA . "IP: " . TF::RED . $target->getAddress());
+                    $sender->sendMessage(TF::AQUA . "IP: " . TF::RED . $target->getNetworkSession()->getIp());
                 }
                 if($this->getConfig()->get("Ping") == true) {
-                    $sender->sendMessage(TF::AQUA . "Ping: " . TF::RED . $target->getPing() . "ms");
+                    $sender->sendMessage(TF::AQUA . "Ping: " . TF::RED . $target->getNetworkSession()->getPing() . "ms");
                 }
                 if($this->getConfig()->get("OS") == true) {
                     $sender->sendMessage(TF::AQUA . "OS: " . TF::RED . $os[$cdata["DeviceOS"]]);
@@ -137,7 +144,7 @@ class PlayerInfo extends PluginBase implements Listener {
                     $sender->sendMessage(TF::AQUA . "Health: " . TF::RED . $target->getHealth() . "HP");
                 }
                 if($this->getConfig()->get("Position") == true) {
-                    $sender->sendMessage(TF::AQUA . "Position: " . TF::RED . "X: " . $target->getFloorX() . ", Y: " . $target->getFloorY() . ", Z: " . $target->getFloorZ());
+                    $sender->sendMessage(TF::AQUA . "Position: " . TF::RED . "X: " . $target->getPosition()->getFloorX() . ", Y: " . $target->getPosition()->getFloorY() . ", Z: " . $target->getPosition()->getFloorZ());
                 }
                 $sender->sendMessage(TF::GREEN . TF::BOLD . "================");
             }
