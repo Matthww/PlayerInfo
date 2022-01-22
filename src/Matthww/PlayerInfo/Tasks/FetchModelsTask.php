@@ -21,7 +21,7 @@ class FetchModelsTask extends AsyncTask
         $result = Internet::getURL("https://playerinfo.hillcraft.net/models.yml?v=" . $this->version);
         if(!is_string($result)) {
             $this->setResult(false);
-            return;
+            return false;
         }
         file_put_contents($this->path . "models.yml", $result);
         $this->setResult(true);
