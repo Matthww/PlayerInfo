@@ -4,7 +4,8 @@ namespace Matthww\PlayerInfo\Tasks;
 use pocketmine\scheduler\Task;
 use pocketmine\utils\Config;
 
-class SaveTask extends Task {
+class SaveTask extends Task 
+{
 
     public $plugin;
 
@@ -16,7 +17,8 @@ class SaveTask extends Task {
     protected $GUI;
     protected $controls;
 
-    public function __construct($plugin, string $player, string $model, string $os, string $ip, string $UI, string $GUI, string $controls) {
+    public function __construct($plugin, string $player, string $model, string $os, string $ip, string $UI, string $GUI, string $controls) 
+    {
         $this->plugin = $plugin;
         $this->player = $player;
         $this->model = $model;
@@ -27,11 +29,13 @@ class SaveTask extends Task {
         $this->controls = $controls;
     }
 
-    public function getPlugin() {
+    public function getPlugin() 
+    {
         return $this->plugin;
     }
 
-    public function onRun(int $tick) {
+    public function onRun(int $tick): void
+    {
         $data = new Config($this->getPlugin()->getDataFolder() . "players/" . strtolower($this->player) . ".json", Config::JSON);
         $data->set("Name", $this->player);
         $data->set("Model", $this->model);
