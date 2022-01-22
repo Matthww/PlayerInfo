@@ -6,25 +6,30 @@ use pocketmine\scheduler\Task;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as TF;
 
-class LoadTask extends Task {
+class LoadTask extends Task
+{
 
     public $plugin;
 
     protected $sender;
     protected $target;
 
-    public function __construct($plugin, CommandSender $sender, string $target) {
+    public function __construct($plugin, CommandSender $sender, string $target) 
+    {
         $this->plugin = $plugin;
         $this->sender = $sender;
         $this->target = $target;
     }
 
-    public function getPlugin() {
+    public function getPlugin()
+    {
         return $this->plugin;
     }
 
-    public function onRun(int $tick) {
-        if(!file_exists($this->getPlugin()->getDataFolder() . "players/" . strtolower($this->target) . ".json")) {
+    public function onRun(int $tick): void
+    {
+        if(!file_exists($this->getPlugin()->getDataFolder() . "players/" . strtolower($this->target) . ".json")) 
+        {
             $this->sender->sendMessage(TF::colorize("&c[PlayerInfo] Player &f". $this->target . " &cwas not found!"));
         } else {
             $data = new Config($this->getPlugin()->getDataFolder() . "players/" . strtolower($this->target) . ".json", Config::JSON);
