@@ -3,11 +3,13 @@ namespace Matthww\PlayerInfo\Tasks;
 
 use pocketmine\scheduler\Task;
 use pocketmine\utils\Config;
+use pocketmine\utils\TextFormat as TF;
 
 class SaveTask extends Task {
 
     public $plugin;
-
+    
+    protected $date;
     protected $player;
     protected $model;
     protected $os;
@@ -16,8 +18,9 @@ class SaveTask extends Task {
     protected $GUI;
     protected $controls;
 
-    public function __construct($plugin, string $player, string $model, string $os, string $ip, string $UI, string $GUI, string $controls) {
+    public function __construct($plugin, string $date, string $player, string $model, string $os, string $ip, string $UI, string $GUI, string $controls) {
         $this->plugin = $plugin;
+        $this->date = $date;
         $this->player = $player;
         $this->model = $model;
         $this->os = $os;
@@ -32,7 +35,8 @@ class SaveTask extends Task {
     }
 
     public function onRun(int $tick) {
-        $data = new Config($this->getPlugin()->getDataFolder() . "players/" . strtolower($this->player) . ".json", Config::JSON);
+        $data = new Config($this->getPlugin()->getDataFolder() . "players/" .$this->player."/". strtolower($this->player)."-".$this->date. ".json", Config::JSON);
+        $data->set("Date", $this->date);
         $data->set("Name", $this->player);
         $data->set("Model", $this->model);
         $data->set("OS", $this->os);

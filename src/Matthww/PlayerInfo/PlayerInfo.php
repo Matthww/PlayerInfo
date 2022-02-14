@@ -25,7 +25,7 @@ class PlayerInfo extends PluginBase implements Listener {
 
     public function onEnable() {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-
+       
         if(!is_dir($this->getDataFolder())) {
             mkdir($this->getDataFolder());
         }
@@ -36,6 +36,8 @@ class PlayerInfo extends PluginBase implements Listener {
             $this->saveDefaultConfig();
         }
         $this->getServer()->getAsyncPool()->submitTask(new FetchModelsTask($this->getDataFolder(), $this->getDescription()->getVersion()));
+        // const $lokalizacja = $this->getDataFolder();
+        
     }
 
     public function onPacketReceived(DataPacketReceiveEvent $receiveEvent) {
@@ -48,17 +50,25 @@ class PlayerInfo extends PluginBase implements Listener {
     public function onJoin(PlayerJoinEvent $joinEvent) {
         if($this->getConfig()->get("Save") == true) {
             $player = $joinEvent->getPlayer();
-            if (!in_array($player->getName(), $this->PlayerData)) {
-                return false;
+            if(!is_dir($this->getDataFolder() . "players/".$player->getName())) {
+                $this->getLogger()->info(TF::YELLOW."[PLAYERINFODB] > User not found in db... adding.");
+                mkdir($this->getDataFolder() . "players/".$player->getName());
             }
+            $this->getLogger()->info(TF::GREEN.'[PLAYERINFO] > Adding user session '.$player->getName()." to history");
+            date_default_timezone_set("Europe/Warsaw");
+            $date = date('m-d-Y_h-i-s_a', time());  // save date and time (Hours need to being separated with "-" too for windows system because it is crazy....)
+           
+           
+         
             $cdata = $this->PlayerData[$player->getName()];
             $os = ["Unknown", "Android", "iOS", "macOS", "FireOS", "GearVR", "HoloLens", "Windows 10", "Windows", "Dedicated", "Orbis", "Playstation 4", "Nintento Switch", "Xbox One"];
             $UI = ["Classic UI", "Pocket UI"];
             $Controls = ["Unknown", "Mouse", "Touch", "Controller"];
             $GUI = [-2 => "Minimum", -1 => "Medium", 0 => "Maximum"];
-
+            
             $this->getScheduler()->scheduleTask(new SaveTask(
                 $this,
+                $date,
                 $player->getName(),
                 $this->getModel($cdata["DeviceModel"]),
                 $os[$cdata["DeviceOS"]],
@@ -66,7 +76,10 @@ class PlayerInfo extends PluginBase implements Listener {
                 $UI[$cdata["UIProfile"]],
                 $GUI[$cdata["GuiScale"]],
                 $Controls[$cdata["CurrentInputMode"]]
+                
+                
             ));
+            
         }
     }
 
