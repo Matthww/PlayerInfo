@@ -3,24 +3,27 @@
 # True = enabled
 # False = disabled
 
-#Save playerdata
+# Save player data
 Save: true
 
 # Show players name
 Name: true
 
-# Show players IP
+# Show players IP address
 IP: true
+
+# Show players port
+Port: true
 
 # Show players ping
 Ping: true
 
 # Show players Device OS
-# (Android, iOS etc.)
+# (Android, iOS, etc.)
 OS: true
 
 # Show players Device Model
-# (iPhone 7 etc.)
+# (iPhone 7, etc.)
 Model: true
 
 # Show players UI settings
@@ -33,6 +36,9 @@ GUI: true
 # Show players controls
 # (Touch, Mouse or Controller)
 Controls: true
+
+# Show players Unique ID (UUID)
+UUID: true
 
 # Show players health
 Health: true

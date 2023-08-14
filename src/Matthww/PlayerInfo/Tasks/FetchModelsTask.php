@@ -14,8 +14,7 @@ class FetchModelsTask extends AsyncTask {
         $this->version = $version;
     }
 
-    public function onRun() {
-        print($this->version);
+    public function onRun(): void {
         $result = Internet::getURL("https://playerinfo.hillcraft.net/models.yml?v=" . $this->version);
         if(!is_string($result)) {
             $this->setResult(false);

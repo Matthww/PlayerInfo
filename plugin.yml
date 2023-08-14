@@ -1,20 +1,18 @@
 name: PlayerInfo
-version: 2.1.4
+version: 2.1.5
 author: Matthww
-api: [3.0.0]
-description: Shows info about a certain player!
+api: 5.0.0
+description: Shows information about a certain player!
 main: Matthww\PlayerInfo\PlayerInfo
 
 commands:
  playerinfo:
-  description: Show info about a certain player!
+  description: Show information about a certain player!
   usage: "/playerinfo <player>"
   permission: playerinfo.use
   aliases: ['pinfo']
+
 permissions:
-  playerinfo:
-    default: false
-    children:
-      playerinfo.use:
-        default: op
-        description: "Allows the user to run the playerinfo command"
+  playerinfo.use:
+    default: op
+    description: "Allows the player to execute the playerinfo command"
