@@ -103,7 +103,7 @@ class PlayerInfo extends PluginBase implements Listener {
                     $this->getScheduler()->scheduleTask(new LoadTask($this, $sender, $args[0]));
                     return true;
                 } else {
-                    $sender->sendMessage(TF::RED . "[PlayerInfo] Player " .$args[0]. " is not online or does not exist!");
+                    $sender->sendMessage(TF::RED . "[PlayerInfo] Player " .TF::WHITE. $args[0]. TF::RED. " is not online or does not exist!");
                     return false;
                 }
             }
