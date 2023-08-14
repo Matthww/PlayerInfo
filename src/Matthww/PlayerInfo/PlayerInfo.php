@@ -19,7 +19,6 @@ class PlayerInfo extends PluginBase implements Listener {
     protected $DeviceOS;
     protected $DeviceModel;
     protected $UIProfile;
-    protected $PlayerData;
     protected $config;
 
     public function onEnable(): void {
