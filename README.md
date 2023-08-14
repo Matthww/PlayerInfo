@@ -1,5 +1,5 @@
 # PlayerInfo
-Shows info about a certain player!
+Shows information about a certain player!
 
 #### Command Usage:
 `/playerinfo <player>`
@@ -8,17 +8,19 @@ We also have a shorter command:\
 `/pinfo <player>`
 
 #### Permission:
-`playerinfo.use` - Allows the player to use the command `/playerinfo`
+`playerinfo.use` - Allows operator to use the command `/playerinfo`
 
 #### Example:
 
 Name: Steve\
-IP: 127.0.0.1\
-Ping: 46ms\
-OS: iOS\
 Model: iPhone\
+OS: iOS\
+IP: 127.0.0.1\
+Port: 37379\
+Ping: 46ms\
 UI: Classic UI\
 GUI Scale: Maximum\
 Controls: Touch\
-Health: 19HP\
+UUID: a4b63016-7243-3010-8cf7-22915a4b77d5\
+Health: 19 HP\
 Position: X: 132, Y: 78, Z: -963
