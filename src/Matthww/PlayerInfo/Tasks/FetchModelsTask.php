@@ -16,10 +16,11 @@ class FetchModelsTask extends AsyncTask {
 
     public function onRun(): void {
         $result = Internet::getURL("https://raw.githubusercontent.com/Matthww/PlayerInfo/master/resources/models.yml");
-        if(!$result instanceof string) {
+        if(!is_string($result)) {
             $this->setResult(false);
             return;
         }
+        
         file_put_contents($this->path. "models.yml", $result);
         $this->setResult(true);
     }
