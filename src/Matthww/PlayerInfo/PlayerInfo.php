@@ -1,6 +1,6 @@
 <?php
 
-namespace Matthww\PlayerInfo;
+namespace Matthww\PlayerInfo; 
 
 use Matthww\PlayerInfo\Tasks\FetchModelsTask;
 use Matthww\PlayerInfo\Tasks\LoadTask;
