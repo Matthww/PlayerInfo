@@ -6,8 +6,8 @@ use pocketmine\utils\Internet;
 
 class FetchModelsTask extends AsyncTask {
 
-    private $path;
-    private $version;
+    protected $path;
+    protected $version;
 
     public function __construct(string $path, string $version) {
         $this->path = $path;
