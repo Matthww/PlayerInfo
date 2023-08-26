@@ -8,7 +8,7 @@ We also have a shorter command:\
 `/pinfo <player>`
 
 #### Permission:
-`playerinfo.use` - Allows operator to use the command `/playerinfo`
+`playerinfo.use` - Allows the user/player to use the command `/playerinfo`
 
 #### Example:
 
