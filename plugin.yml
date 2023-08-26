@@ -15,4 +15,4 @@ commands:
 permissions:
   playerinfo.use:
     default: op
-    description: "Allows operator to execute the playerinfo command"
+    description: "Allows the user/player to execute the playerinfo command"
