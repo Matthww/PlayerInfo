@@ -1,4 +1,4 @@
-#Device models
+# Device models
 
 iPhone4,1: iPhone 4s
 iPhone5,1: iPhone 5
@@ -66,6 +66,8 @@ iPad7,3: iPad Pro (10.5-inch)
 iPad7,4: iPad Pro (10.5-inch)
 
 SAMSUNG SM-J327T1: Samsung Galaxy J3 Prime Black
+
+SAMSUNG SM-A107F: Samsung Galaxy A10s (2019)
 
 SAMSUNG SM-A530x: Samsung Galaxy A8 (2018)
 SAMSUNG SM-A730x: Samsung Galaxy A8+ (2018)

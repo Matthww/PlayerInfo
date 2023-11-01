@@ -6,22 +6,22 @@ use pocketmine\utils\Internet;
 
 class FetchModelsTask extends AsyncTask {
 
-    private $path;
-    private $version;
+    protected $path;
+    protected $version;
 
     public function __construct(string $path, string $version) {
         $this->path = $path;
         $this->version = $version;
     }
 
-    public function onRun() {
-        print($this->version);
-        $result = Internet::getURL("https://playerinfo.hillcraft.net/models.yml?v=" . $this->version);
+    public function onRun(): void {
+        $result = Internet::getURL("https://raw.githubusercontent.com/Matthww/PlayerInfo/master/resources/models.yml")->getBody();
         if(!is_string($result)) {
             $this->setResult(false);
             return;
         }
-        file_put_contents($this->path . "models.yml", $result);
+
+        file_put_contents($this->path. "models.yml", $result);
         $this->setResult(true);
     }
 }
